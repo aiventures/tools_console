@@ -18,6 +18,9 @@ pylint_msg.txt
 *.apk
 *.pyc
 
+# logs
+*.log
+
 # personal files
 _paths.py
 

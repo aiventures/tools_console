@@ -1,0 +1,91 @@
+{
+    "version": 1,
+    "disable_existing_loggers": false,
+    "formatters": {
+      "default":{
+        "class": "logging.Formatter",
+        "style": "{",
+        "datefmt": "%Y%m%d_%H:%M:%S",
+        "format": "{asctime:s} {levelname:8s} {module:s}:[{name:<25s}. {funcName:s} [{lineno:4d}]: {message:s}"    
+      },
+      "multi-process": {
+        "class": "logging.Formatter",
+        "style": "{",
+        "datefmt": "%Y%m%d_%H:%M:%S",
+        "format": "{asctime:s}; {levelname:8s}; {process:5d}; {name:<25s} {lineno:4d}; {message:s}"
+      },
+      "multi-thread": {
+        "class": "logging.Formatter",
+        "style": "{",
+        "datefmt": "%Y%m%d_%H:%M:%S",
+        "format": "{asctime:s}; {levelname:8s}; {threadName:5d}; {name:<25s} {lineno:4d}; {message:s}"
+      },
+      "verbose": {
+        "class": "logging.Formatter",
+        "style": "{",
+        "datefmt": "%Y%m%d_%H:%M:%S",
+        "format": "{asctime:s}; {levelname:<8s}; {process:5d}; {threadName:5s}; {name:<25s} {lineno:4d}; {message:s}"
+      },            
+      "multiline": {
+        "class": "logging.Formatter",
+        "style": "{",
+        "datefmt": "%Y%m%d_%H:%M:%S",
+        "format": "{asctime:s}; {levelname:8s}\n{process:5d}\n{threadName:8s}\n{name:<25s}{lineno:4d}\n{message:s}\n"
+      }    
+    },
+    "handlers": {
+      "stdout":{
+        "level": "INFO",
+        "class": "logging.StreamHandler",
+        "formatter": "default",
+        "stream" : "ext://sys.stdout"
+      },       
+      "console":{
+        "level": "DEBUG",
+        "class": "logging.StreamHandler",
+        "formatter": "default",
+        "stream" : "ext://sys.stdout"
+      },       
+      "root":{
+        "level": "WARN",
+        "class": "logging.StreamHandler",
+        "formatter": "default",
+        "stream" : "ext://sys.stdout"
+      },        
+      "rotatingfile": {
+        "level": "INFO",
+        "class": "logging.handlers.RotatingFileHandler",
+        "maxBytes": 100000,
+        "backupCount": 3,
+        "formatter": "verbose",
+        "filename": "./log/log_rot.log",
+        "mode": "a",
+        "encoding": "utf-8"
+      },       
+      "file_handler": {
+        "level": "INFO",
+        "class": "logging.handlers.WatchedFileHandler",
+        "formatter": "verbose",
+        "filename": "./log/log.log",
+        "mode": "a",
+        "encoding": "utf-8"
+      },
+      "null_handler": {
+        "level": "INFO",
+        "class": "logging.NullHandler"
+      }    
+    },
+    "loggers": {
+      "null_logger": {
+        "handlers": ["null_handler"],
+        "level": "WARN",
+        "propagate": false
+      },         
+      "root": {
+        "handlers": ["console"],
+        "level": "DEBUG",
+        "propagate": true
+      }    
+    }
+  }
+  
